@@ -12,6 +12,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import MaterialChart from "@/components/charts/MaterialChart";
 
 const MaterialForecasting = () => {
   const materials = [
@@ -25,6 +26,7 @@ const MaterialForecasting = () => {
       priority: "High",
       deliveryDate: "2024-01-20",
       supplier: "BuildMax Industries",
+      category: "Civil",
     },
     {
       id: 2,
@@ -36,6 +38,7 @@ const MaterialForecasting = () => {
       priority: "Critical",
       deliveryDate: "2024-01-18",
       supplier: "MetalCorp Ltd",
+      category: "Civil",
     },
     {
       id: 3,
@@ -47,6 +50,7 @@ const MaterialForecasting = () => {
       priority: "Medium",
       deliveryDate: "2024-01-25",
       supplier: "ElectroPro Systems",
+      category: "Electrical",
     },
     {
       id: 4,
@@ -58,6 +62,7 @@ const MaterialForecasting = () => {
       priority: "Critical",
       deliveryDate: "2024-02-01",
       supplier: "PowerTech Solutions",
+      category: "Electrical",
     },
     {
       id: 5,
@@ -69,8 +74,19 @@ const MaterialForecasting = () => {
       priority: "High",
       deliveryDate: "2024-01-30",
       supplier: "AutoControl Systems",
+      category: "Electrical",
     },
   ];
+
+  // Transform materials data for charts
+  const chartMaterials = materials.map(material => ({
+    name: material.name,
+    quantity: material.quantity,
+    cost: material.totalCost,
+    category: material.category,
+    deliveryDate: material.deliveryDate,
+    priority: material.priority.toLowerCase() as 'low' | 'medium' | 'high' | 'critical',
+  }));
 
   const insights = [
     {
@@ -178,6 +194,12 @@ const MaterialForecasting = () => {
           Export Report
         </Button>
       </motion.div>
+
+      {/* AI-Powered Material Charts */}
+      <MaterialChart 
+        materials={chartMaterials}
+        className="mt-6"
+      />
 
       {/* Materials Table */}
       <motion.div

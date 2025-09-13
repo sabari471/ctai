@@ -6,9 +6,80 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import GanttChart from "@/components/charts/GanttChart";
 
 const ProjectSchedule = () => {
   const [view, setView] = useState("gantt");
+
+  // Enhanced Gantt data with more realistic structure
+  const ganttTasks = [
+    {
+      id: "material-procurement",
+      name: "Material Procurement Phase",
+      startDate: "2024-01-15",
+      endDate: "2024-02-15",
+      progress: 68,
+      status: 'in-progress' as const,
+      priority: 'high' as const,
+      assignee: "Sarah Johnson",
+      dependencies: [],
+    },
+    {
+      id: "cement-delivery",
+      name: "Cement & Aggregates Delivery",
+      startDate: "2024-01-18",
+      endDate: "2024-01-25",
+      progress: 90,
+      status: 'in-progress' as const,
+      priority: 'medium' as const,
+      assignee: "Mike Wilson",
+      dependencies: ["material-procurement"],
+    },
+    {
+      id: "steel-delivery",
+      name: "Steel Reinforcement Setup",
+      startDate: "2024-01-20",
+      endDate: "2024-02-01",
+      progress: 75,
+      status: 'in-progress' as const,
+      priority: 'high' as const,
+      assignee: "John Smith",
+      dependencies: ["cement-delivery"],
+    },
+    {
+      id: "electrical-install",
+      name: "Electrical Equipment Installation",
+      startDate: "2024-02-01",
+      endDate: "2024-03-15",
+      progress: 25,
+      status: 'not-started' as const,
+      priority: 'critical' as const,
+      assignee: "Emily Davis",
+      dependencies: ["steel-delivery"],
+    },
+    {
+      id: "transformer-setup",
+      name: "Transformer Configuration",
+      startDate: "2024-02-10",
+      endDate: "2024-02-25",
+      progress: 0,
+      status: 'not-started' as const,
+      priority: 'critical' as const,
+      assignee: "Robert Chen",
+      dependencies: ["electrical-install"],
+    },
+    {
+      id: "testing-phase",
+      name: "System Testing & Commissioning",
+      startDate: "2024-03-01",
+      endDate: "2024-03-30",
+      progress: 0,
+      status: 'not-started' as const,
+      priority: 'medium' as const,
+      assignee: "Lisa Anderson",
+      dependencies: ["transformer-setup"],
+    },
+  ];
 
   const phases = [
     {
@@ -276,7 +347,11 @@ const ProjectSchedule = () => {
         </div>
 
         <TabsContent value="gantt">
-          <GanttView />
+          <GanttChart 
+            tasks={ganttTasks}
+            title="Project Timeline & Dependencies"
+            className="mt-6"
+          />
         </TabsContent>
         
         <TabsContent value="timeline">

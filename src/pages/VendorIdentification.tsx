@@ -14,13 +14,14 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import VendorChart from "@/components/charts/VendorChart";
 
 const VendorIdentification = () => {
   const [selectedVendor, setSelectedVendor] = useState(null);
 
   const vendors = [
     {
-      id: 1,
+      id: "1",
       name: "TechCorp Industries",
       specialization: "Electrical Equipment",
       location: "Mumbai, Maharashtra",
@@ -31,9 +32,22 @@ const VendorIdentification = () => {
       contact: { phone: "+91 98765 43210", email: "sales@techcorp.com" },
       projects: 145,
       responseTime: "2-4 hours",
+      category: "Electrical",
+      totalValue: 850000,
+      performance: {
+        quality: 92,
+        delivery: 88,
+        cost: 85,
+        service: 94
+      },
+      orders: [
+        { month: "Oct", value: 120000, orders: 3 },
+        { month: "Nov", value: 180000, orders: 4 },
+        { month: "Dec", value: 150000, orders: 2 },
+      ]
     },
     {
-      id: 2,
+      id: "2",
       name: "BuildMax Co.",
       specialization: "Construction Materials",
       location: "Delhi, India",
@@ -44,9 +58,22 @@ const VendorIdentification = () => {
       contact: { phone: "+91 98765 43211", email: "info@buildmax.co" },
       projects: 230,
       responseTime: "1-2 hours",
+      category: "Construction",
+      totalValue: 1200000,
+      performance: {
+        quality: 88,
+        delivery: 92,
+        cost: 90,
+        service: 87
+      },
+      orders: [
+        { month: "Oct", value: 200000, orders: 5 },
+        { month: "Nov", value: 250000, orders: 6 },
+        { month: "Dec", value: 180000, orders: 4 },
+      ]
     },
     {
-      id: 3,
+      id: "3",
       name: "ElectroPro Systems",
       specialization: "Electrical Infrastructure",
       location: "Bangalore, Karnataka",
@@ -57,9 +84,22 @@ const VendorIdentification = () => {
       contact: { phone: "+91 98765 43212", email: "contact@electropro.in" },
       projects: 189,
       responseTime: "30 min - 1 hour",
+      category: "Electrical",
+      totalValue: 950000,
+      performance: {
+        quality: 95,
+        delivery: 93,
+        cost: 88,
+        service: 96
+      },
+      orders: [
+        { month: "Oct", value: 180000, orders: 4 },
+        { month: "Nov", value: 220000, orders: 5 },
+        { month: "Dec", value: 200000, orders: 3 },
+      ]
     },
     {
-      id: 4,
+      id: "4",
       name: "MetalCorp Ltd",
       specialization: "Metal & Steel",
       location: "Chennai, Tamil Nadu",
@@ -70,9 +110,22 @@ const VendorIdentification = () => {
       contact: { phone: "+91 98765 43213", email: "orders@metalcorp.com" },
       projects: 167,
       responseTime: "1-3 hours",
+      category: "Materials",
+      totalValue: 780000,
+      performance: {
+        quality: 90,
+        delivery: 85,
+        cost: 92,
+        service: 89
+      },
+      orders: [
+        { month: "Oct", value: 150000, orders: 3 },
+        { month: "Nov", value: 180000, orders: 4 },
+        { month: "Dec", value: 160000, orders: 3 },
+      ]
     },
     {
-      id: 5,
+      id: "5",
       name: "PowerTech Solutions",
       specialization: "Power Equipment",
       location: "Hyderabad, Telangana",
@@ -83,9 +136,22 @@ const VendorIdentification = () => {
       contact: { phone: "+91 98765 43214", email: "support@powertech.co.in" },
       projects: 98,
       responseTime: "2-6 hours",
+      category: "Electrical",
+      totalValue: 680000,
+      performance: {
+        quality: 87,
+        delivery: 82,
+        cost: 85,
+        service: 88
+      },
+      orders: [
+        { month: "Oct", value: 120000, orders: 2 },
+        { month: "Nov", value: 160000, orders: 3 },
+        { month: "Dec", value: 140000, orders: 2 },
+      ]
     },
     {
-      id: 6,
+      id: "6",
       name: "AutoControl Systems",
       specialization: "Automation & Control",
       location: "Pune, Maharashtra",
@@ -96,6 +162,19 @@ const VendorIdentification = () => {
       contact: { phone: "+91 98765 43215", email: "hello@autocontrol.in" },
       projects: 134,
       responseTime: "1-2 hours",
+      category: "Mechanical",
+      totalValue: 720000,
+      performance: {
+        quality: 93,
+        delivery: 89,
+        cost: 87,
+        service: 92
+      },
+      orders: [
+        { month: "Oct", value: 140000, orders: 3 },
+        { month: "Nov", value: 170000, orders: 4 },
+        { month: "Dec", value: 150000, orders: 3 },
+      ]
     },
   ];
 
@@ -241,6 +320,12 @@ const VendorIdentification = () => {
           Add New Vendor
         </Button>
       </motion.div>
+
+      {/* Vendor Analytics Dashboard */}
+      <VendorChart 
+        vendors={vendors}
+        className="mt-6"
+      />
 
       {/* Vendor Cards */}
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
